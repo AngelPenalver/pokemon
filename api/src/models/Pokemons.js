@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
+      autoIncrement: true
     },
     name: {
       type: DataTypes.STRING,
@@ -16,19 +17,19 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     live: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     attack: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    defending: {
-      type: DataTypes.STRING,
+    defense: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     speed: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       
     },
     heigth: {
@@ -37,5 +38,5 @@ module.exports = (sequelize) => {
     weigth: {
       type: DataTypes.STRING,
     },
-  });
+  },{ timestamps: false });
 };
