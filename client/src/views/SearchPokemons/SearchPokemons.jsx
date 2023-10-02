@@ -1,0 +1,65 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { clearPokemons, getPokemonsByName } from "../../redux/action";
+
+
+const SearchPokemons = () => {
+
+    let pokemon = useSelector(state => state.pokemon)
+    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const { name } = useParams()
+    const navigate = useNavigate()
+    if (!Array.isArray(pokemon)) {
+        pokemon = [pokemon]
+    }
+    // console.log(useParams());
+    function pokemonNotFound() {
+        // console.log(true);
+        window.alert('Pokemon no encontrado o no existe');
+        dispatch(clearPokemons())
+        dispatch(getPokemonsByName(name))
+        navigate('/home')
+    }
+    console.log(pokemon);
+    useEffect(() => {
+        dispatch(clearPokemons())
+        setLoading(true)
+        dispatch(getPokemonsByName(name)).then((response) => {
+           
+           if (response.payload.length === 0) {
+            pokemonNotFound();
+        }
+            setLoading(false)
+        })
+    }, [name])
+    const pokemones = pokemon.map((pokemon) => {
+        return {
+            name: pokemon.name.split('')[0].toUpperCase() + pokemon.name.split('').slice(1).join('').toLowerCase(),
+            id: pokemon.id,
+            image: pokemon.image,
+            type: pokemon.type
+        }
+    })
+
+    return (
+
+        <div>
+            {pokemones.length >= 1 && pokemones.map(pokemon => <NavLink to={`/detail/${pokemon.id}`} key={pokemon.id}>
+
+                <div>
+                    <h1>{pokemon.name}</h1>
+                    <img src={pokemon.image} key={pokemon.id} alt="" />
+                    {pokemon.type && pokemon.type.map(type => {
+                        return <p>{type}</p>
+                    })}
+                </div>
+            </NavLink>)}
+            
+
+        </div>
+    )
+}
+export default SearchPokemons;

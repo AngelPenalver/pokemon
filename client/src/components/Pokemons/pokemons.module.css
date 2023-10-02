@@ -1,0 +1,32 @@
+.div {
+    border: 1px solid red;
+    width: 200px;    
+    margin: 10px;
+    padding: 6px;
+    height: 350px;
+    min-height: 300px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
+.nav{
+    text-decoration: none;
+    color: black;
+}
+.container{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap
+}
+
+.img{
+    /* max-width: 200px; */
+    width: 160px;
+    height: 150px;
+    max-height: 200px;
+    align-items: center;
+}
