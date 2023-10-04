@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('../../views/NavBar/miFuente/TenorSans-Regular.ttf');
+}
+
+.img {
+    width: 20px;
+}
+
+.button {
+    margin: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.button:hover {
+    background-color: rgba(112, 112, 112, 0.356);
+    transition: 0.4s;
+}
+
+.div {
+    /* border: 1px solid red; */
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px #3366B0 solid;
+    /* opacity: 20; */
+
+}
+
+.label {
+    margin: 10px;
+    font-family: 'MiFuente';
+    font-size: 20px;
+}

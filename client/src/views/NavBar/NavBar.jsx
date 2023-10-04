@@ -2,7 +2,11 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { clearPokemons } from "../../redux/action";
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"; 
+import gif from './gif.gif'
+import logo from './logo.png'
+import style from './NavBar.module.css'
+import search from './search.png'
 
 
 const NavBar = (props) => {
@@ -13,32 +17,43 @@ const NavBar = (props) => {
     useEffect(() => {
         dispath(clearPokemons())
     }, [dispath])
-    
+
 
     function handleChange(event) {
         setInput(event.target.value)
-        
+
     }
-    function handleSubmit(){
-        if(input === ''){
+    function handleSubmit() {
+        if (input === '') {
             window.alert('Debe ingresar un nombre para la busqueda del pokemon')
-        }else{
+        } else {
             navigate(`/search/${input.toLowerCase()}`)
 
         }
     }
 
     return (
-        <div>
-            <input type="text" value={input} onChange={handleChange} />
-             <button onClick={() => handleSubmit()}>Buscar</button>
-           
+        <div className={style.div}>
+            <div className={style.container}>
+            <img src={logo} alt="" className={style.logo}/>
+            <img src={gif} alt="" className={style.img}/>
+            </div>
+
+<div>
+            <nav className={style.nav}>
+
             <NavLink to='/home' pokemons={pokemons}>
-                <button>Inicio</button>
+                <button className={style.button}>Inicio</button>
             </NavLink>
             <NavLink to='/create'>
-                <button>Crear Pokemón</button>
+                <button className={style.button}>Crear Pokemón</button>
             </NavLink>
+
+            <input type="text" value={input} onChange={handleChange} placeholder='Ingrese un nombre' className={style.input}/>
+            <button onClick={() => handleSubmit()} className={style.button}>Buscar <img src={search} alt="" className={style.search} /> </button>
+
+            </nav>
+</div>
         </div>
     )
 }

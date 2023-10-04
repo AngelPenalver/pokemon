@@ -6,16 +6,16 @@ export default function validation (input){
     if(!input.name){
         errores.name = 'El nombre no puede estar vacio'
     }
-    if(input.attack === 0){
+    if(input.attack < '1'){
         errores.attack = 'El ataque debe de ser mas de 0'
     }
-    if(input.defense === 0){
+    if(input.defense < '1'){
         errores.defense = 'La defensa debe de ser mas de 0'
     }
-    if(input.speed === 0){
+    if(input.speed < '1'){
         errores.speed = 'La velocidad debe de ser mas de 0'
     }
-    if(input.live === 0){
+    if(input.live < '1'){
         errores.live = 'La vida debe de ser mas de 0'
     }
     if(input.type1 === 'Null' || input.type2 === 'Null'){

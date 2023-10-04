@@ -44,7 +44,7 @@ export default function rootReducer(state = initialState, action) {
             } else {
                 return {
                     ...state,
-                    pokemons: state.pokemons.filter((pokemon) => {
+                    pokemons: state.allPokemons.filter((pokemon) => {
                         return pokemon.type && pokemon.type.includes(action.payload);
                     })
                 }
@@ -63,14 +63,14 @@ export default function rootReducer(state = initialState, action) {
             } else if (action.payload === 'DB') {
                 return {
                     ...state,
-                    pokemons: state.pokemons.filter((pokemon) => {
+                    pokemons: state.allPokemons.filter((pokemon) => {
                         return isUUID(pokemon.id) === true
                     })
                 }
             } else {
                 return {
                     ...state,
-                    pokemons: state.pokemons.filter((pokemon) => {
+                    pokemons: state.allPokemons.filter((pokemon) => {
                         return isUUID(pokemon.id) === false
                     })
                 }

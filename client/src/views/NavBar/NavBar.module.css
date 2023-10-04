@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('./miFuente/TenorSans-Regular.ttf');
+}
+@media only screen and (max-width: 768px){
+  .nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
+.div {
+    display: flex;
+    font-family: 'MiFuente';
+    justify-content: space-between;
+    align-items: center;
+    background-color:#30a9d967 ;
+    border-radius:0 0 15% 0;
+    padding: 10px 20px;
+  }
+  .nav{
+    margin: 0 10px;
+  }
+  
+  .img {
+  height: 80px;
+  }
+  .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .input{
+    text-align: center;
+    margin: 10px;
+    padding: 6px 5px;
+
+  }
+  .logo{
+    /* width: 60px; */
+    height: 100px;
+    width: 190px;
+
+  }
+  .button{
+    /* background:none;     */
+    background-color:#FFCB05;
+    border-right: none;
+    cursor: pointer;
+    border-top: none;
+    opacity: 0.8;
+    border-left: 2px #347EBF solid;
+    border-bottom: 3px #385EAA solid;
+    padding: 6px 10px;
+    margin: 0px 10px;
+    transition: 0.5s;
+
+  }
+  .button:hover{
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .search {
+    height: 15px;
+    width: 15px;
+    align-items: center;
+  }

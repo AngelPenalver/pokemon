@@ -3,7 +3,7 @@ import { deletePokemons, getPokemons, getPokemonsById } from "../../redux/action
 import { useParams,  useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
+import style from './DetailPokemon.module.css'
 
 const Detail = () => {    
     const isUUID = (uuid) => {
@@ -40,8 +40,13 @@ let restName = pokemon.name ?  pokemon.name.split('').slice(1).join('').toLowerC
     return(
         <div>
             {isUUID(pokemon.id) && <button onClick={() => deleteHandler(pokemon.id)}>Borrar pokemon</button>}
-           <h1>{firtLetter + restName}</h1>
+                <div className={style.container}>
+
+            </div>
+            <div className={style.div}>
            <img src={pokemon.image} alt="" key={pokemon.id}/>
+           <div className={style.detail}>
+           <h1>{firtLetter + restName}</h1>
           <h3>Vida</h3>
            <p>{pokemon.live}</p>
            <h3>Ataque</h3>
@@ -58,6 +63,8 @@ let restName = pokemon.name ?  pokemon.name.split('').slice(1).join('').toLowerC
            {pokemon.type && pokemon.type.map(type => {
             return <p key={type}>{type}</p>
            })}
+           </div>
+            </div>
 
         </div>
     )

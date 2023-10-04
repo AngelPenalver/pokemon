@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    
+
+}
+.div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.detail{
+    display: contents;
+    content: normal;
+}

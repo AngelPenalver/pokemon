@@ -1,8 +1,56 @@
-.form{
+
+  @media only screen and (max-width: 768px) {
+    .div{
+        /* display: subgrid; */
+        /* margin-top: 200px; */
+    }
+    
+  }
+  
+  
+  .p {
+   
+    color: red;
+    padding: 0px;
+    font-size: 10px;
+    display: block;
+    /* margin: 5px; */
+  }
+  .label{
+    display: block;
+    margin: 5px;
+  }
+  .container{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
 }
 .div{
-    display:block;
-    border: 2px red solid;
-}
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+      background-color: rgba(148, 182, 255, 0.425);
+      width: 70vh;
+      align-items: center;
+
+    
+    
+  }
+  
+  .label {
+    display: block;
+    margin: 5px;
+  }
+  .input{
+    margin: 8px;
+    width: 60%;
+  }
+  
+  .form{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+  }
