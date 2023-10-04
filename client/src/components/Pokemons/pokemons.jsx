@@ -9,7 +9,7 @@ export default function Pokemons(props) {
 
     const { pokemons, page, forPage } = props
 
-    const pokemones = pokemons.map((pokemon) => {
+    const pokemones = Array.isArray(pokemons) && pokemons.map((pokemon) => {
         return {
             name: pokemon.name.split('')[0].toUpperCase() + pokemon.name.split('').slice(1).join('').toLowerCase(),
             id: pokemon.id,
@@ -17,9 +17,6 @@ export default function Pokemons(props) {
             type: pokemon.type
         }
     })
-    // console.log(pokemones);
-
-
 
     return (
         <div className={style.container}>

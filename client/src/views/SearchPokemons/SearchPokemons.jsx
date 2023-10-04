@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { clearPokemons, getPokemonsByName } from "../../redux/action";
+import style from './SearchPokemons.module.css'
+import carga from './loading.gif'
 
 
 const SearchPokemons = () => {
@@ -25,15 +27,18 @@ const SearchPokemons = () => {
     }
     console.log(pokemon);
     useEffect(() => {
-        dispatch(clearPokemons())
         setLoading(true)
-        dispatch(getPokemonsByName(name)).then((response) => {
-           
-           if (response.payload.length === 0) {
-            pokemonNotFound();
-        }
-            setLoading(false)
-        })
+        dispatch(clearPokemons())
+        setTimeout(() => {
+            dispatch(getPokemonsByName(name)).then((response) => {
+            
+                if (response.payload.length === 0) {
+                    pokemonNotFound();
+                }
+
+                setLoading(false)
+            })
+        }, 1500);
     }, [name])
     const pokemones = pokemon.map((pokemon) => {
         return {
@@ -46,19 +51,16 @@ const SearchPokemons = () => {
 
     return (
 
-        <div>
-            {pokemones.length >= 1 && pokemones.map(pokemon => <NavLink to={`/detail/${pokemon.id}`} key={pokemon.id}>
-
-                <div>
+        <div className={style.container}>
+            {loading ? <img src={carga} alt="" className={style.im} /> : pokemones.length >= 1 && pokemones.map(pokemon => <NavLink to={`/detail/${pokemon.id}`} className={style.navLink}key={pokemon.id}>
+                <div className={style.card}>
                     <h1>{pokemon.name}</h1>
-                    <img src={pokemon.image} key={pokemon.id} alt="" />
+                    <img src={pokemon.image} key={pokemon.id} alt="" className={style.imgcard}/>
                     {pokemon.type && pokemon.type.map(type => {
                         return <p>{type}</p>
                     })}
                 </div>
             </NavLink>)}
-            
-
         </div>
     )
 }

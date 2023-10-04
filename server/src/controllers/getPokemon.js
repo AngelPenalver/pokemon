@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Pokemons, Type } = require('../db')
-const url = "https://pokeapi.co/api/v2/pokemon/?limit=60";
+const url = "https://pokeapi.co/api/v2/pokemon/?limit=300";
 
 
 const getPokemons = async (req, res) => {
@@ -14,6 +14,7 @@ const getPokemons = async (req, res) => {
       // console.log(objeto);
       return getDetails(element);
     });
+    console.log(response2.length);
     const pokemons = await Promise.all(response2);
 
     const data = pokemons.map((pokemon) => {
@@ -33,6 +34,7 @@ const getPokemons = async (req, res) => {
       };
       return objeto;
     });
+    console.log(data);
     const findDB = await Pokemons.findAll({include:[{model: Type, attributes: ['name'],through: { attributes: [] }}]});
     // console.log(findDB);
     const pokemonsDB = findDB.map(pokemon => {

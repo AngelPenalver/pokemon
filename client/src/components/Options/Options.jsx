@@ -5,12 +5,11 @@ import {  filterPokemons, filterPokemonsByTipe, getTypes, orderPokemons } from "
 
 const Option =({setPage, setReset, reset}) => {
     
+    const [value, setValue] = useState()
+    const [valueType, setValueType] = useState()
     
     const dispatch = useDispatch();
-// console.log(props);
-    
-    // const []
-    
+
     const types = useSelector(state => state.types)
     useEffect(()=>{
         dispatch(filterPokemonsByTipe('All'))
@@ -20,16 +19,17 @@ const Option =({setPage, setReset, reset}) => {
 
     function handleFilter(event){
         setPage(1)
+        setValueType('All') 
         dispatch(filterPokemons(event.target.value))
     }
+    
     function handleFilterType(event){
         setPage(1)
+        setValue('All')
         dispatch(filterPokemonsByTipe(event.target.value))
     }
     function handleOrder(event){
         dispatch(orderPokemons(event.target.value))
-        
-        console.log(event.target.value);
     }
     useEffect(()=> {
         dispatch(getTypes())
