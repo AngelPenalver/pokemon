@@ -2,28 +2,14 @@
     font-family: 'MiFuente';
     src: url('./miFuente/TenorSans-Regular.ttf');
 }
-@media only screen and (max-width: 768px){
-  .nav{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-  .div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-}
 .div {
-    display: flex;
+  display: flex;
     font-family: 'MiFuente';
     justify-content: space-between;
     align-items: center;
-    background-color:#30a9d967 ;
-    border-radius:0 0 15% 0;
+    background-color:#3d4ff167 ;
+    /* border-radius:0 0 15% 0; */
+    border-bottom: #03305862 2px solid;
     padding: 10px 20px;
   }
   .nav{
@@ -32,17 +18,18 @@
   
   .img {
   height: 80px;
-  }
+}
   .container{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
   }
   .input{
+    outline: none;
     text-align: center;
     margin: 10px;
     padding: 6px 5px;
-
+    
   }
   .logo{
     /* width: 60px; */
@@ -62,14 +49,45 @@
     padding: 6px 10px;
     margin: 0px 10px;
     transition: 0.5s;
-
+    
   }
   .button:hover{
     opacity: 1;
     transition: 0.5s;
   }
   .search {
+
     height: 15px;
     width: 15px;
     align-items: center;
   }
+    @media only screen and (max-width: 768px){
+      .nav{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        margin: 5px;
+        
+      }
+      .div{
+        width:auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      .button{
+        margin: 5px;
+      }
+        .container{
+          
+          width: 90%;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+      
+    }

@@ -1,0 +1,38 @@
+.div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.select{
+    /* background:none;     */
+    background-color:#FFCB05;
+    border-right: none;
+    cursor: pointer;
+    border-top: none;
+    outline: none;
+    border-left: 2px #347EBF solid;
+    border-bottom: 3px #385EAA solid;
+    padding: 3px 7px;
+    opacity: 0.8;
+    margin:6px;
+    transition: 0.7s;
+  }
+.select:hover{
+    transition: 0.7s;
+    opacity: 1;
+}
+    @media only screen and (max-width: 768px) {
+      .div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        
+      }
+      .select{
+        width: 80%;
+        
+      }
+    }

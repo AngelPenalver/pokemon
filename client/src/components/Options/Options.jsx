@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {  filterPokemons, filterPokemonsByTipe, getTypes, orderPokemons } from "../../redux/action";
+import style from './Options.module.css'
 
 const Option =({setPage, setReset, reset}) => {
     
@@ -21,6 +22,7 @@ const Option =({setPage, setReset, reset}) => {
         setPage(1)
         setValueType('All') 
         dispatch(filterPokemons(event.target.value))
+       
     }
     
     function handleFilterType(event){
@@ -37,18 +39,18 @@ const Option =({setPage, setReset, reset}) => {
     },[])
     // console.log(types);
     return(
-        <div>
-           <select name="" id="" onChange={handleFilterType} >
+        <div className={style.div}>
+           <select name="" id="" onChange={handleFilterType} className={style.select}>
             <option value="All">Todos</option>
             {types.map((type) => {
             return <option key={type.id} value={type.name}>{type.name}</option>
             })}
            </select>
-           <select name="" id="" onChange={handleOrder}>
+           <select name="" id="" onChange={handleOrder} className={style.select}>
             <option value="ascendente">A - Z</option>
             <option value="descendente">Z - A</option>
            </select>
-           <select name="" id="" onChange={handleFilter}>
+           <select name="" id="" onChange={handleFilter} className={style.select}>
             <option value="All">Todos</option>
             <option value="API">API</option>
             <option value="DB">Base de datos</option>

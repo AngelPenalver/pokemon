@@ -78,7 +78,7 @@ export default function rootReducer(state = initialState, action) {
         case CREATE_POKEMONS:
             return {
                 ...state,
-                allPokemons: [...state.allPokemons, action.payload],
+                allPokemons: [...state.allPokemons, action.payload]
                 // pokemons: state.allPokemons.push(action.payload)
                 // pokemons: [...state.allPokemons, action.payload]
             }

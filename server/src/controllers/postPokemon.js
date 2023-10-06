@@ -34,6 +34,7 @@ const postPokemon = async (req, res) => {
     await data.addType(addType)
 
     const pokemon = await Pokemons.findAll();
+    console.log(pokemon)
     return res.status(200).json(pokemon);
 
   } catch (error) {

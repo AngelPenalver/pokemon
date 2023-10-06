@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import style from './CreatePokemon.module.css'
 import { useDispatch } from 'react-redux';
 import { createPokemons, getPokemons } from '../../redux/action';
 import { useSelector } from 'react-redux';
-import swal from 'sweetalert'
 import validation from '../../components/validation/validation';
 
 const CreatePokemon = () => {
@@ -36,6 +35,7 @@ const CreatePokemon = () => {
             setInput(valuesInputs)
 
 
+
         } else {
             event.preventDefault()
             window.alert('Revise bien el formulario e intente de nuevo')
@@ -54,87 +54,107 @@ const CreatePokemon = () => {
 
     }
     // console.log(type);
-    console.log(errores);
+    // console.log(input);
 
     return (
         <div className={style.container}>
-            <form action="" className={style.div}>
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Nombre</label>
-                    {errores.name && <span className={style.p}>{errores.name}</span>}
-                    <input type="text" name="name" id="" value={input.name} onChange={handleChange} />
-                </div>
+            <div className={style.div}>
+
+                <form action="" className={style.center}>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Nombre</label>
+                        {errores.name && <span className={style.p}>{errores.name}</span>}
+                        {errores.name ? <input type="text" name="name" id="" value={input.name} className={style.input2} onChange={handleChange} style={{ border: '1.5px solid rgba(255, 0, 0, 0.7)' }} /> : <input type="text" name="name" id="" value={input.name} onChange={handleChange} className={style.input2}
+                            style={{ border: '2px solid rgb(0, 255, 64, 1)' }} />}
+
+                    </div>
 
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Imagen</label>
-                    {errores.image && <span className={style.p}>{errores.image}</span>}
-                    <input type="text" name='image' value={input.image} onChange={handleChange} />
-                </div>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Imagen</label>
+                        {errores.image && <span className={style.p}>{errores.image}</span>}
+                        {errores.image ? <input type="text" name='image' value={input.image} onChange={handleChange} className={style.input2} style={{ border: '1.5px solid rgba(255, 0, 0, 0.7)' }} /> : <input type="text" name='image' value={input.image} onChange={handleChange} className={style.input2}
+                            style={{ border: '2px solid rgb(0, 255, 64, 1)' }} />}
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Ataque</label>
-                    {errores.attack && <span className={style.p}>{errores.attack}</span>}
-                    <span>{input.attack}</span>
-                    <input type="range" id="numero" name="attack" min="0" max="100" value={input.attack} onChange={handleChange} className={style.input} />
-                </div>
+                    </div>
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Defensa</label>
-                    {errores.defense && <span className={style.p}>{errores.defense}</span>}
-                    <span>{input.defense}</span>
-                    <input type="range" id="numero" name="defense" min={0} value={input.defense} max="100" onChange={handleChange} className={style.input} />
-                </div>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Ataque</label>
+                        {errores.attack && <span className={style.p}>{errores.attack}</span>}
+                        <span>{input.attack}</span>
+                        <input type="range" id="numero" name="attack" min="0" max="100" value={input.attack} onChange={handleChange} className={style.input} />
+                    </div>
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Vida</label>
-                    {errores.live && <span className={style.p}>{errores.live}</span>}
-                    <span>{input.live}</span>
-                    <input type="range" id="numero" name="live" min="0" max="100" value={input.live} onChange={handleChange} className={style.input} />
-                </div>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Defensa</label>
+                        {errores.defense && <span className={style.p}>{errores.defense}</span>}
+                        <span>{input.defense}</span>
+                        <input type="range" id="numero" name="defense" min={0} value={input.defense} max="100" onChange={handleChange} className={style.input} />
+                    </div>
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Velocidad</label>
-                    {errores.speed && <span className={style.p}>{errores.speed}</span>}
-                    {<span>{input.speed}</span>}
-                    <input type="range" id="numero" name="speed" min="0" max="100" value={input.speed} onChange={handleChange} className={style.input} />
-                </div>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Vida</label>
+                        {errores.live && <span className={style.p}>{errores.live}</span>}
+                        <span>{input.live}</span>
+                        <input type="range" id="numero" name="live" min="0" max="100" value={input.live} onChange={handleChange} className={style.input} />
+                    </div>
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Altura</label>
-                    <span>{input.height}</span>
-                    <input type="range" id="numero" name="height" min="0" max="100" value={input.height} onChange={handleChange} className={style.input} />
-                </div>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Velocidad</label>
+                        {errores.speed && <span className={style.p}>{errores.speed}</span>}
+                        {<span>{input.speed}</span>}
+                        <input type="range" id="numero" name="speed" min="0" max="100" value={input.speed} onChange={handleChange} className={style.input} />
+                    </div>
 
-                <div className={style.form}>
-                    <label htmlFor="" className={style.label}>Peso</label>
-                    <span>{input.weight}</span>
-                    <input type="range" id="numero" name="weight" min="0" max="100" value={input.weight} onChange={handleChange} className={style.input} />
-                </div>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Altura</label>
+                        <span>{input.height}</span>
+                        <input type="range" id="numero" name="height" min="0" max="100" value={input.height} onChange={handleChange} className={style.input} />
+                    </div>
 
-                <div>
-                    {errores.type && <span className={style.p}>{errores.type}</span>}
-                    <select name="type1" id="" value={input.type1} onChange={handleChange} className={style.select}>
-                        <option value="Null">Tipos</option>
-                        {types.map((type) => {
-                            return <option value={type.id} key={type.id}>{type.name}</option>
-                        })}
-                    </select>
-                    <select name="type2" id="" value={input.type2} onChange={handleChange} className={style.select}>
+                    <div className={style.form}>
+                        <label htmlFor="" className={style.label}>Peso</label>
+                        <span>{input.weight}</span>
+                        <input type="range" id="numero" name="weight" min="0" max="100" value={input.weight} onChange={handleChange} className={style.input} />
+                    </div>
 
-                        <option value="Null">Tipos</option>
-                        {types.map((type) => {
-                            return <option value={type.id} key={type.id}>{type.name}</option>
-                        })}
-                    </select>
+                    {errores.type1 && <span className={style.p}>{errores.type1}</span>}
+                    {!errores.type1 ? errores.type2 && <span className={style.p}>{errores.type2}</span> : ''}
+                    <div>
+                        {errores.type1 ? <select name="type1" id="" style={{ backgroundColor: 'rgb(255, 0, 0, 0.5)' }} value={input.type1} onChange={handleChange} className={style.select}>
+                            <option value="Null">Tipos</option>
+                            {types.map((type) => {
+                                return <option value={type.id} key={type.id}>{type.name}</option>
+                            })}
+                        </select> : <select name="type1" id="" value={input.type1} onChange={handleChange} className={style.select}>
+                            <option value="Null">Tipos</option>
+                            {types.map((type) => {
+                                return <option value={type.id} key={type.id}>{type.name}</option>
+                            })}
+                        </select>}
+                        {errores.type2 ? <select name="type2" id="" style={{ backgroundColor: 'rgb(255, 0, 0, 0.5)' }} value={input.type2} onChange={handleChange} className={style.select}>
 
-                </div>
-                <div>
-                    <button onClick={(event) => handleSubmit(event, input)}>Submit</button>
+                            <option value="Null">Tipos</option>
+                            {types.map((type) => {
+                                return <option value={type.id} key={type.id}>{type.name}</option>
+                            })}
+                        </select> : <select name="type2" id="" value={input.type2} onChange={handleChange} className={style.select}>
 
-                </div>
+                            <option value="Null">Tipos</option>
+                            {types.map((type) => {
+                                return <option value={type.id} key={type.id}>{type.name}</option>
+                            })}
+                        </select>}
 
-            </form>
+
+                    </div>
+                    <div>
+                        <button onClick={(event) => handleSubmit(event, input)} className={style.button}>Submit</button>
+
+                    </div>
+
+                </form>
+            </div>
 
         </div>
     )

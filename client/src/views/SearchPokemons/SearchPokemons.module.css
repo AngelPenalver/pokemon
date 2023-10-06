@@ -13,22 +13,43 @@
 
 }
 .imgcard{
-    height: 120px;
-    width: 120px;
+    height: 16vh;
+    width: 11vw;
 
 }
-.card{
+.card {
     
-        border: 1px solid red;
-        width: 250px;    
-        margin: 10px;
-        padding: 6px;
-        height: 350px;
-        min-height: 300px;
-        max-height: 400px;
-        display: flex;
-        flex-direction: column; 
-        justify-content: center; 
-        align-items: center; 
-    
+    width: 25vw;    
+    margin-top: 30px;
+    padding: 6px;
+    height: 50vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    flex: 0 0 20%;
+    border-bottom: 1px #0d49a1 solid;
+    border-right: 1px #0d49a1 solid;
+    background-color:#3d4ff167 ;
+    transition: 0.3s;
+    font-family: 'MiFuente';
+}
+.card:hover{
+    transition: 0.3s;
+    transform: scale(1.02);
+
+}
+@media only screen and (max-width: 768px) {
+  
+    .card {
+
+        width: 50vw;
+        height: 70vh;
+        font-size: 14px;
+    }
+        .imgcard {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
