@@ -28,7 +28,7 @@ function Home(props) {
         <div className={style.div}>
             <div className={style.option} >
             <Option setPage={setPage} reset={reset} setReset={setReset} />
-            </div>
+               </div>
             <Pagination pokemons={pokemons} page={page} setPage={setPage} maximun={maximun} />
             <Pokemons pokemons={pokemons} page={page} forPage={forPage} className={style.div} />
             <Pagination pokemons={pokemons} page={page} setPage={setPage} maximun={maximun} />

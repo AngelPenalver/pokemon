@@ -56,7 +56,7 @@ export const getTypes = () => {
     }
 }
 export const createPokemons = (input) => {
-    // console.log(input);
+    console.log(input);
     return async(dispatch) => {
         try {
             await axios.post('/pokemons', input)
@@ -65,6 +65,7 @@ export const createPokemons = (input) => {
                 payload: input
             })
         } catch (error) {
+            console.log(error.message);
             console.log('El pokemon ya ha sido creado')
         }
     }

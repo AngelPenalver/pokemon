@@ -21,15 +21,15 @@ export default function Pokemons(props) {
     return (
         <div className={style.container}>
             {Array.isArray(pokemones) && pokemones.slice((page - 1) * forPage, (page - 1) * forPage + forPage).map(pokemon =>
-                <NavLink to={`/detail/${pokemon.id}`} key={pokemon.id} className={style.nav}>
                     <div className={style.div} key={pokemon.id} >
+                        <NavLink to={`/detail/${pokemon.id}`} key={pokemon.id} className={style.nav}>
                         <h1>{pokemon.name}</h1>
                         <img src={pokemon.image} className={style.img} key={pokemon.id} alt="" />
                         {pokemon.type && pokemon.type.map((type, index) => {
                             return <p key={index}>{type}</p>
                         })}
-                    </div>
                 </NavLink>
+                    </div>
             )}
         </div>
     )
