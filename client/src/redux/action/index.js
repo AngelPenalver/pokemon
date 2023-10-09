@@ -1,5 +1,13 @@
 import axios from 'axios'
 
+export const setError = (error) => {
+    // console.log(error);
+    return {
+        type: 'SET_ERROR',
+        payload: error
+    }
+}
+
 export const getPokemons = () => {
     return async (dispatch) => {
         try {
@@ -9,7 +17,7 @@ export const getPokemons = () => {
                 payload: data
             })
         } catch (error) {
-            console.log(error.message)
+            dispatch(setError(error.response.data.error))
         }
     }
 }
@@ -22,7 +30,7 @@ export const getPokemonsById = (id) => {
                 payload: data
             })
         } catch (error) {
-            console.log('Pokemon no encontrado')
+            dispatch(setError(error.response.data.error))
 
         }
     }
@@ -36,7 +44,7 @@ export const getPokemonsByName = (name) => {
                 payload: data
             })
         } catch (error) {
-          console.log(error.message);
+            dispatch(setError(error.response.data.error))
 
         }
     }
@@ -50,38 +58,53 @@ export const getTypes = () => {
                 payload: data
             })
         } catch (error) {
-           console.log(error.message);
-
+            dispatch(setError(error.response.data.error))
         }
     }
 }
 export const createPokemons = (input) => {
-    console.log(input);
-    return async(dispatch) => {
+    // console.log(input);
+    return async (dispatch) => {
         try {
             await axios.post('/pokemons', input)
             return dispatch({
-                type: "CREATE_POKEMONS", 
+                type: "CREATE_POKEMONS",
                 payload: input
             })
         } catch (error) {
-            console.log(error.message);
-            console.log('El pokemon ya ha sido creado')
+            dispatch(setError(error.response.data.error))
+        }
+    }
+}
+export const updatePokemon = (input) => {
+    // console.log(input);
+    return async(dispatch) => {
+        try {
+            // console.log(input);
+            await axios.put('/pokemons', input)
+            return dispatch({
+                type: "UPDATE_POKEMONS",
+                payload: input
+            })
+            
+        } catch (error) {
+            console.log(error);
+            dispatch(setError(error.response.data.error))
+            
         }
     }
 }
 export const deletePokemons = (id) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
-            const {data} = await axios.delete(`/pokemons/${id}`)
+            const { data } = await axios.delete(`/pokemons/${id}`)
             return dispatch({
                 type: 'DELETE_POKEMONS',
                 payload: data
             })
-            
+
         } catch (error) {
-            console.log('Pokemon no encontrado')
-            
+            dispatch(setError(error.response.data.error))
         }
     }
 }
@@ -108,5 +131,10 @@ export const orderPokemons = (order) => {
 export const clearPokemons = () => {
     return {
         type: 'CLEAR_POKEMONS'
+    }
+}
+export const clearError = () => {
+    return{
+        type: 'CLEAR_ERROR'
     }
 }

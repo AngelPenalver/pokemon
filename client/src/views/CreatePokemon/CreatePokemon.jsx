@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './CreatePokemon.module.css'
 import { useDispatch } from 'react-redux';
-import { createPokemons, getPokemons } from '../../redux/action';
+import { clearError, createPokemons, getPokemons} from '../../redux/action';
 import { useSelector } from 'react-redux';
 import validation from '../../components/validation/validation';
 
 const CreatePokemon = () => {
     const dispatch = useDispatch()
+    const [submitClicked, setSubmitClicked] = useState(false)
+    const error = useSelector(state => state.error)
     const types = useSelector(state => state.types)
+    // console.log(error);
     const valuesInputs = {
         name: '',
         image: '',
@@ -20,28 +23,31 @@ const CreatePokemon = () => {
         type1: 'Null',
         type2: 'Null'
     }
-    // console.log(types);
+
     const [errores, setErrores] = useState({})
     const [input, setInput] = useState(valuesInputs)
-    // console.log(errores);
-
-    function handleSubmit(event, input) {
-        if (Object.keys(errores).length === 0) {
-            window.alert('Pokemon creado con exito')
-            event.preventDefault()
-            let lowerCaseName = input.name.toLowerCase();
-            dispatch(createPokemons({ ...input, name: lowerCaseName }));
-            dispatch(getPokemons())
-            setInput(valuesInputs)
-
-
-
-        } else {
-            event.preventDefault()
-            window.alert('Revise bien el formulario e intente de nuevo')
+    useEffect(() => {
+        if (error) {
+            window.alert(error);
         }
-    }
+    }, [submitClicked]);
+    
 
+    async function handleSubmit(event, input) {
+        event.preventDefault();
+        let lowerCaseName = input.name.toLowerCase();
+        dispatch(clearError());
+        const data = await dispatch(createPokemons({ ...input, name: lowerCaseName }));
+        if (data) {
+            window.alert('Pokemon creado con exito');
+            dispatch(getPokemons());
+            setInput(valuesInputs);
+            event.preventDefault();
+
+        }
+        setSubmitClicked(!submitClicked);
+
+    }
     function handleChange(event) {
         setErrores(validation({
             ...input,
@@ -53,9 +59,7 @@ const CreatePokemon = () => {
         })
 
     }
-    // console.log(type);
-    // console.log(input);
-
+    
     return (
         <div className={style.container}>
             <div className={style.div}>
@@ -115,7 +119,7 @@ const CreatePokemon = () => {
                     <div className={style.form}>
                         <label htmlFor="" className={style.label}>Peso</label>
                         <span>{input.weight}</span>
-                        <input type="range" id="numero" name="weight" min="0" max="100" value={input.weight} onChange={handleChange} className={style.input} />
+                        <input type="range" id="numero" name="weight" min="0" max="1000" value={input.weight} onChange={handleChange} className={style.input} />
                     </div>
 
                     {errores.type1 && <span className={style.p}>{errores.type1}</span>}

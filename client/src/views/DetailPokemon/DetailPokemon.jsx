@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { deletePokemons, getPokemons, getPokemonsById } from "../../redux/action";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import style from './DetailPokemon.module.css'
@@ -41,8 +41,8 @@ const Detail = () => {
         <div className={style.container}>
 
             <div className={style.img}>
-            {isUUID(pokemon.id) && <button onClick={() => deleteHandler(pokemon.id)}>Borrar pokemon</button>}
-            {isUUID(pokemon.id) && <button>Actualizar datos</button>}
+            {isUUID(pokemon.id) && <NavLink to={`/update/${pokemon.id}`} pokemon={pokemon} ><button className={style.button}>Actualizar datos</button></NavLink>}
+            {isUUID(pokemon.id) && <button onClick={() => deleteHandler(pokemon.id)} className={style.button}>Borrar pokemon</button>}
                 <img src={pokemon.image} alt="" key={pokemon.id} className={style.image} />
             </div>
             <div className={style.detail}>

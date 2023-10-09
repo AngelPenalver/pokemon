@@ -60,7 +60,7 @@ const getPokemonByName = async (req, res) => {
           weight: pokemon.weight,
           type: pokemon.Types.map(type => type.name)
         })
-      //  console.log(objetoDB);
+    
         result = objetoDB;
     }
     // console.log(result);

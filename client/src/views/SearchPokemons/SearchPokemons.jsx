@@ -27,18 +27,24 @@ const SearchPokemons = () => {
     }
     console.log(pokemon);
     useEffect(() => {
-        setLoading(true)
-        dispatch(clearPokemons())
-        setTimeout(() => {
-            dispatch(getPokemonsByName(name)).then((response) => {
+        try {
             
-                if (response.payload.length === 0) {
-                    pokemonNotFound();
-                }
-
-                setLoading(false)
-            })
-        }, 1500);
+            setLoading(true)
+            dispatch(clearPokemons())
+            setTimeout(() => {
+                dispatch(getPokemonsByName(name)).then((response) => {
+                
+                    if (response.payload.length === 0) {
+                        pokemonNotFound();
+                    }
+    
+                    setLoading(false)
+                })
+            }, 1500);
+        } catch (error) {
+            window.alert(error.message)
+            
+        }
     }, [name])
     const pokemones = pokemon.map((pokemon) => {
         return {

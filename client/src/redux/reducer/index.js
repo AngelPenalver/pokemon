@@ -1,7 +1,8 @@
-import { CLEAR_POKEMONS, CREATE_POKEMONS, DELETE_POKEMONS, FILTER_POKEMONS, FILTER_POKEMONS_BYTYPE, GET_POKEMONS, GET_POKEMONS_BYID, GET_POKEMONS_BYNAME, GET_TYPES, ORDER_POKEMONS } from "../action/actionTypes/index"
+import { CLEAR_POKEMONS, CLEAR_ERROR, CREATE_POKEMONS, DELETE_POKEMONS, FILTER_POKEMONS,SET_ERROR, FILTER_POKEMONS_BYTYPE, GET_POKEMONS, GET_POKEMONS_BYID, GET_POKEMONS_BYNAME, GET_TYPES, ORDER_POKEMONS, UPDATE_POKEMONS } from "../action/actionTypes/index"
 
-let initialState = { pokemons: [], allPokemons: [], pokemon: [], types: [] }
+let initialState = { pokemons: [], allPokemons: [], pokemon: [], types: [], error: null }
 export default function rootReducer(state = initialState, action) {
+    // console.log(state.error);
     switch (action.type) {
         case GET_POKEMONS:
             return {
@@ -17,8 +18,13 @@ export default function rootReducer(state = initialState, action) {
         case CLEAR_POKEMONS:
             return {
                 ...state,
-                pokemon: []
+                pokemon: [],
             }
+            case CLEAR_ERROR:
+                return{
+                    ...state, 
+                    error: null
+                }
         case GET_POKEMONS_BYNAME:
             return {
                 ...state,
@@ -34,21 +40,22 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 types: action.payload
             }
-        case FILTER_POKEMONS_BYTYPE:
-            // console.log(state.allPokemons);
-            if (action.payload === 'All') {
-                return {
+            case FILTER_POKEMONS_BYTYPE:
+                let allPokemons = [...state.allPokemons]; 
+                // console.log(allPokemons);
+                if (action.payload === 'All') {
+                  return {
                     ...state,
                     pokemons: state.allPokemons
-                }
-            } else {
-                return {
+                  }
+                } else {
+                  return {
                     ...state,
-                    pokemons: state.allPokemons.filter((pokemon) => {
-                        return pokemon.type && pokemon.type.includes(action.payload);
+                    pokemons: allPokemons.filter((pokemon) => {
+                      return pokemon.type && pokemon.type.includes(action.payload);
                     })
+                  }
                 }
-            }
         case FILTER_POKEMONS:
             const isUUID = (uuid) => {
                 let regex =
@@ -75,12 +82,17 @@ export default function rootReducer(state = initialState, action) {
                     })
                 }
             }
+            case UPDATE_POKEMONS:
+                return{
+                    ...state,
+                    allPokemons: state.pokemons,
+                    pokemons: state.pokemons
+                }
         case CREATE_POKEMONS:
             return {
                 ...state,
                 allPokemons: [...state.allPokemons, action.payload]
-                // pokemons: state.allPokemons.push(action.payload)
-                // pokemons: [...state.allPokemons, action.payload]
+
             }
         case ORDER_POKEMONS:
             let sortedFavorites = [...state.pokemons];
@@ -89,11 +101,16 @@ export default function rootReducer(state = initialState, action) {
             } else {
                 sortedFavorites.sort((a, b) => b.name.localeCompare(a.name))
             }
-            // console.log(sortedFavorites);
+            
             return {
                 ...state,
                 pokemons: sortedFavorites
             }
+            case SET_ERROR:
+                return {
+                    ...state,
+                    error: action.payload
+                };
         default:
             return state
 

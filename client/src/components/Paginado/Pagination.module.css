@@ -2,11 +2,10 @@
     font-family: 'MiFuente';
     src: url('../../views/NavBar/miFuente/TenorSans-Regular.ttf');
 }
-@media only screen and (max-width: 768px){}
-.img {
-    width: 20px;
+.img{
+    width: 2vw;
+    height: 4vh;
 }
-
 .button {
     margin: 10px;
     background: none;
@@ -37,3 +36,12 @@
     font-family: 'MiFuente';
     font-size: 20px;
 }
+    @media only screen and (max-width: 768px){
+
+        .img {
+            width: 5vw;
+        }
+        .label{
+            font-size: 1em;
+        }
+    }

@@ -9,15 +9,6 @@
 }
 
 
-@media only screen and (max-width: 768px) {
-    .body {
-
-        background-position: center;
-        height: 100%;
-        width: 100%;
-        /* background-size:20vh; */
-    }
-}
 
 .div {
     display: flex;
@@ -31,11 +22,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    
 }
 
 .button {
-
+    
     /* background:none;     */
     background-color: #FFCB05;
     border-right: none;
@@ -44,30 +35,54 @@
     opacity: 0.8;
     border-left: 2px #347EBF solid;
     border-bottom: 3px #385EAA solid;
-    padding: 8px 14px;
+    padding: 10px 18px;
     margin: 0px 10px;
     transition: 0.5s;
     animation: blink 1s infinite;
     transition: 0.4s;
-
+    
 }
 
 .button:hover {
+    opacity: 1.5;
     transition: 0.4s;
     animation: none;
     transform: scale(1.05);
 }
+@keyframes desplazar {
+    0%   {transform: translateX(100%);}
+    100% {transform: translateX(-100%);}
+  }
+  
+.text{
+    display: inline-block;
+    position: relative;
+    animation: desplazar 10s linear infinite;
+    font-size: 2em;
+    /* box-shadow: 1px 2px 8px m; */
+  }
 
-@keyframes blink {
+  @keyframes blink {
     0% {
-        opacity: 1;
+        opacity: 1.8;
     }
 
     50% {
         opacity: 0.5;
     }
-
+    
     100% {
-        opacity: 1;
+        opacity: 1.5;
     }
 }
+    @media only screen and (max-width: 768px) {
+        .body {
+    
+            background-position: top;
+            background-size: 130vw 130vh;
+           
+        }
+        .div{
+            position: relative;
+        }
+    }

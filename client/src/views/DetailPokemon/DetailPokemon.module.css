@@ -16,6 +16,25 @@
     
 
 }
+.button {
+
+    /* background:none;     */
+    background-color: #FFCB05;
+    border-right: none;
+    cursor: pointer;
+    border-top: none;
+    opacity: 0.8;
+    border-left: 2px #347EBF solid;
+    border-bottom: 3px #385EAA solid;
+    padding: 7px 13px;
+    /* margin: 0px 10px; */
+    transition: 0.5s;
+    margin: 7px;
+}
+.button:hover{
+    transition: 0.5s;
+    opacity: 1.1;
+}
 .detail{
     display: flex;
     flex-direction: column;

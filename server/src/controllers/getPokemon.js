@@ -14,7 +14,7 @@ const getPokemons = async (req, res) => {
       // console.log(objeto);
       return getDetails(element);
     });
-    console.log(response2.length);
+    // console.log(response2.length);
     const pokemons = await Promise.all(response2);
 
     const data = pokemons.map((pokemon) => {
@@ -34,7 +34,7 @@ const getPokemons = async (req, res) => {
       };
       return objeto;
     });
-    console.log(data);
+    // console.log(data);
     const findDB = await Pokemons.findAll({include:[{model: Type, attributes: ['name'],through: { attributes: [] }}]});
     // console.log(findDB);
     const pokemonsDB = findDB.map(pokemon => {

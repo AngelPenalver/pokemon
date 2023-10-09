@@ -1,0 +1,55 @@
+.img {
+    width: 20vw;
+
+}
+
+.text {
+    font-family: 'MiFuente';
+    font-size: 2em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+}
+
+.div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+}
+
+.button {
+    margin: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    /* background:none;     */
+    background-color: #FFCB05;
+    border-right: none;
+    cursor: pointer;
+    border-top: none;
+    opacity: 0.8;
+    border-left: 2px #347EBF solid;
+    border-bottom: 3px #385EAA solid;
+    padding: 7px 13px;
+    /* margin: 0px 10px; */
+    transition: 0.5s;
+    margin: 7px;
+}
+.button:hover{
+    transition: 0.5s;
+    opacity: 1.1;
+}
+
+@media only screen and (max-width: 768px) {
+    .text {
+        font-size: 1em;
+    }
+}
